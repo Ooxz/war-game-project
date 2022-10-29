@@ -10,11 +10,11 @@ function handleClick() {
 	})
 }
 
-setTimeout(callback, 2000)
+// setTimeout(callback, 2000)
 
-function callback() {
-	console.log("I finaly ran")
-}
+// function callback() {
+// 	console.log("I finaly ran")
+// }
 
 const people = [
     { name: "Jack", hasPet: true },
@@ -23,5 +23,17 @@ const people = [
     { name: "Bob", hasPet: false },
 ]
 
-const peopleWithPets = people.filter(person => person.hasPet);
-console.log(peopleWithPets)
+// const peopleWithPets = people.filter(person => person.hasPet);
+// console.log(peopleWithPets)
+
+function filterArray(array, callback) {
+    const resultingArray = []
+    // Write your filtering logic here
+    for(let item of array) {
+       const shouldBeIncluded = callback(item)
+	   resultingArray.push(shouldBeIncluded)
+    }
+	return resultingArray
+}
+
+filterArray()
