@@ -26,14 +26,27 @@ const people = [
 // const peopleWithPets = people.filter(person => person.hasPet);
 // console.log(peopleWithPets)
 
-function filterArray(array, callback) {
-    const resultingArray = []
-    // Write your filtering logic here
-    for(let item of array) {
-       const shouldBeIncluded = callback(item)
-	   resultingArray.push(shouldBeIncluded)
-    }
-	return resultingArray
-}
+// function filterArray(array, callback) {
+//     const resultingArray = []
+//     // Write your filtering logic here
+//     for(let item of array) {
+//        const shouldBeIncluded = callback(item)
+// 	   resultingArray.push(shouldBeIncluded)
+//     }
+// 	return resultingArray
+// }
 
-filterArray()
+const lol = [5, 6]
+
+function lolfunction(l, callback) {
+    const result = []
+    for(item of l) {
+        const shouldBeIncluded = callback(item)
+        result.push(shouldBeIncluded)
+    }
+}
+const letsgo = lolfunction(lol, function(number) {
+    return number * 2
+})
+
+console.log(letsgo)
