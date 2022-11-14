@@ -1,6 +1,6 @@
 const btn = document.getElementById('btn');
 const drawBtn = document.getElementById('draw-btn');
-const demo = document.getElementById('cards');
+const cards = document.getElementById('cards');
 let deckId
 drawBtn.disabled = true
 
@@ -13,7 +13,6 @@ function handleClick() {
 	.then(response => response.json())
 	.then(data => {
 		deckId = data.deck_id
-		console.log(deckId)
 	})
 }
 
@@ -22,11 +21,13 @@ function draw2Cards() {
 	fetch(` https://apis.scrimba.com/deckofcards/api/deck/${deckId}/draw/?count=2`)
 	.then(response => response.json())
 	.then(data => {
-		console.log(data.cards)
-		demo.innerHTML = `
-		<img src=${data.cards[0].image}></img>
-		<img src=${data.cards[1].image}></img>
-		`
+		let index = 0
+		for(const child of cards.children) {
+			child.innerHTML = `
+			<img class="card" src=${data.cards[index++].image}></img>
+			`
+		}
+		
 		
 	})
 }
