@@ -1,22 +1,29 @@
+let computerScore = 0
+let playerScore = 0
 const btn = document.getElementById("btn");
 const drawBtn = document.getElementById("draw-btn");
 const cards = document.getElementById("cards");
 const result = document.getElementById("result");
 const cardRemaining = document.getElementById("card-remaining");
+const computerScoreEl = document.getElementById("computer-score")
+const playerScoreEl = document.getElementById("player-score")
 let deckId;
 drawBtn.disabled = true;
 
 drawBtn.addEventListener("click", draw2Cards);
 btn.addEventListener("click", handleClick);
 
-function handleClick() {
+async function handleClick() {
   drawBtn.disabled = false;
-  fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
-    .then((response) => response.json())
-    .then((data) => {
+  const response = await fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
+  const data = await response.json();
+    
       deckId = data.deck_id;
 	  console.log(deckId)
-    });
+    cardRemaining.innerHTML =`
+		Card remaining: ${data.remaining}
+	  `
+    
 }
 
 function draw2Cards() {
@@ -27,11 +34,23 @@ function draw2Cards() {
     .then((response) => response.json())
     .then((data) => {
       let index = 0
+
 	  const winnerText = determineCardWinner(data.cards[0], data.cards[1])
 	  result.innerHTML = winnerText
 	  cardRemaining.innerHTML =`
 		Card remaining: ${data.remaining}
 	  `
+    if(data.remaining === 0) {
+      drawBtn.disabled = true;
+      if(computerScore > playerScore) {
+        result.innerHTML = `Computer wins the game`
+      } else if(playerScore > computerScore) {
+        result.innerHTML = `You win the game`
+      } else {
+        result.innerHTML = `It's a draw`
+      }
+    }  
+
 	  console.log(data.remaining)
       for (const child of cards.children) {
 		
@@ -63,18 +82,13 @@ function determineCardWinner(card1, card2) {
   if (card1ValueIndex === card2ValueIndex) {
     return "War";
   } else if (card1ValueIndex > card2ValueIndex) {
-    return "Player 1 win";
+    computerScore++
+    computerScoreEl.innerHTML = `Computer Score: ${computerScore}`
+    return "Computer wins";
   } else if (card1ValueIndex < card2ValueIndex) {
-    return "Player 2 win";
+    playerScore++
+    playerScoreEl.innerHTML = `Player Score: ${playerScore}`
+    return "You win";
   }
 }
 
-// const card1Obj = {
-// 	value: "7"
-// }
-
-// const card2Obj = {
-// 	value: "KING"
-// }
-
-// determineCardWinner(card1Obj, card2Obj)

@@ -11,15 +11,21 @@
 	<title>War Game</title>
 </head>
 <body>
+	<div class="header">
 	<button id="btn" class="new-deck">New Deck</button>
+	<div id="card-remaining">Cards remaining: </div>
+</div>
+<div class="main">
 	<h2 id="result">Game of War</h2>
-	<div id="cards">
+	
+		<div id="computer-score">Computer Score:</div>
+		<div id="cards">
 		<div class="card-slot"></div>
 		<div class="card-slot"></div>
 	</div>
-	<div id="card-remaining">Cards remaining: </div>
+		<div id="player-score">Player Score:</div>
 	<button id="draw-btn" class="draw">Draw</button>
-
+</div>
 	<script src="index.js"></script>
 </body>
 </html>

@@ -3,10 +3,7 @@ body {
 	background-image: url(./images/table.png);
 	font-family: 'Exo 2', sans-serif;
 	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items:  center;
+	
 	color: white;
 }
 
@@ -14,6 +11,20 @@ body {
 	box-sizing: border-box;
 }
 
+.header {
+	display: flex; 
+	align-items: center;
+	justify-content: space-around;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items:  center;
+	height: 92.8vh;
+	margin-top: 20px;
+}
 
 button {
 	background-color: yellow;
@@ -45,4 +56,16 @@ div.card-slot:nth-of-type(1) {
 
 .card {
 	width: 100%;
+}
+
+button:disabled {
+	cursor: not-allowed;
+}
+
+#computer-score {
+	margin-bottom: 20px;
+}
+
+#player-score {
+	margin-top: 20px;
 }
